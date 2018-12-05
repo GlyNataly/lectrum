@@ -12,7 +12,6 @@ export const api = {
             });
         },
         create (comment) {
-            console.log("creat-api");
             return fetch(`${MAIN_URL}/feed`, {
                 method: 'POST',
                 headers: {
