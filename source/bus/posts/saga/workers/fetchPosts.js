@@ -15,6 +15,6 @@ export function* fetchPosts () {
         }
         yield put(postActions.fillPosts(data));
     } catch (error) {
-        yield put(postActions.emitError(error, 'fetchPost worker'));
+        yield put(postActions.emitError(error, error.message));
     } 
 };
