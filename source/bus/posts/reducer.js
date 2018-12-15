@@ -17,8 +17,8 @@ export const postsReducer = (state = initialState, action) => {
         case types.CLEARE_POSTS:
             return state.clear();
 
-        case types.REMOVE_POST:
-            return state.delete(state.indexOf(fromJS(action.payload)));       
+        case types.REMOVE_POST:    
+            return state.delete(state.findIndex(p => p.get("id") === action.payload));       
         default:
             return state;    
     }

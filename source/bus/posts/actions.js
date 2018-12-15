@@ -21,10 +21,10 @@ export const postActions = {
             type:  types.CLEARE_POSTS,
         };
     },
-    removePost: (post) => {
+    removePost: (postId) => {
         return {
             type: types.REMOVE_POST,
-            payload: post,
+            payload: postId,
         };
     },
 

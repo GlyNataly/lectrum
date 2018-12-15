@@ -10,13 +10,10 @@ export function* deletePost ({ payload: postId }) {
     try {
         yield put(uiActions.startFetching());
         const response = yield apply(api, api.posts.remove, [postId]);  
-        const result = yield apply(api, api.posts.fetch); 
-        const { data }= yield apply(result, result.json);
         if (response.status !== 204) {
             throw new Error(message);
         }
-        
-        yield put(postActions.fillPosts(data));
+        yield put(postActions.removePost(postId));
     } catch (error) {
         yield put(uiActions.emitError(error, error.message));
     } finally {
