@@ -1,23 +1,28 @@
 //Core
-import { put, apply } from 'redux-saga/effects';
+import { put, apply, select } from 'redux-saga/effects';
 
 //Instruments
 import { api } from '../../../../REST';
 import { postActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
 
-export function* deletePost ({ payload: postId }) {
+export function* likePost ({ payload: postId }) {
     try {
         yield put(uiActions.startFetching());
-        const response = yield apply(api, api.posts.remove, [postId]);  
+
+        const response = yield apply(api, api.posts.like, [postId]);  
 
         if (response.status !== 204) {
-            const { message } =yield apply(response, response.json);
-            
+            const { message } = yield apply(response, response.json);
+
             throw new Error(message);
         }
 
-        yield put(postActions.removePost(postId));
+        const liker = yield select((state) => {
+            return state.profile.removeAll(['avatar', 'token']);
+        })
+
+        yield put(postActions.likePost({ liker, postId }));
     } catch (error) {
         yield put(uiActions.emitError(error, error.message));
     } finally {
