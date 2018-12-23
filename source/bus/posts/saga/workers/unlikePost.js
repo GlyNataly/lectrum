@@ -17,10 +17,8 @@ export function* unlikePost ({ payload: postId }) {
 
             throw new Error(message);
         }
-
-        const liker = yield select((state) => {
-            return state.profile.removeAll(['avatar', 'token']);
-        })
+        
+        const liker = yield select((state) => state.profile.get("id"));
 
         yield put(postActions.unlikePost({ liker, postId }));
     } catch (error) {

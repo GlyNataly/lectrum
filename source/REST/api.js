@@ -58,7 +58,7 @@ export const api = {
                     Authorization: this.token,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({comment})                
+                body: JSON.stringify({comment}),                
             });
         },
         remove (postId) {
@@ -75,6 +75,27 @@ export const api = {
                 headers: {
                     Authorization: this.token,
                 },
+            });
+        },
+    },
+    profile: {
+        updateProfile (profileInfo) {
+            return fetch(`${MAIN_URL}/user`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: this.token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(profileInfo),     
+            });
+        },
+        updateAvatar (avatarFormData) {
+            return fetch(`${MAIN_URL}/image`, {
+                method: 'POST',
+                headers: {
+                    Authorization: this.token,
+                },
+                body: avatarFormData,     
             });
         },
     },
