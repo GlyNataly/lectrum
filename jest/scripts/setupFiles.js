@@ -62,6 +62,25 @@ const users = [
     },
 ];
 
+const newName = {
+    firstName: 'Walter',
+    lastName: 'White',
+};
+
+const newAvatar = ['avatar'];
+
+const newPassword = {
+    oldPassword: 12345,
+    newPassword: 123456,
+};
+
+const emitError = {
+    type: 'TEST_ERROR',
+    payload: {},
+    error: true,
+    meta: 'TEST_META',
+};
+
 global.__ = {
     userProfile,
     errorMessage,
@@ -75,6 +94,10 @@ global.__ = {
     credentials,
     url,
     users,
+    newAvatar,
+    newName,
+    newPassword,
+    emitError,
 };
 global.fetch = fetch;
 global.localStorage = new LocalStorage();

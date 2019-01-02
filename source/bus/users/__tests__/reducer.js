@@ -1,5 +1,5 @@
 //Core
-import { List, Map } from 'immutable';
+import { List, fromJS } from 'immutable';
 
 //Reducer
 import { usersReducer } from '../reducer';
@@ -14,9 +14,9 @@ describe('users reducer:', () => {
         expect(usersReducer(void 0, {})).toEqual(initialState)
     });
     test('should handle FILL_USERS action', () => {
-        expect(usersReducer(__.users, usersActions.fillUsers(__.users))).toEqual(List(__.users.map(Map)));
+        expect(usersReducer(__.users, usersActions.fillUsers(__.users))).toEqual(fromJS(__.users));
     });
     test('should handle CLEAR_USERS action', () => {
-        expect(usersReducer(void 0, usersActions.clearUsers())).toEqual(initialState);
+        expect(usersReducer(void 0, usersActions.clearUsers())).toEqual(initialState.clear());
     });
 });
